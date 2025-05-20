@@ -263,6 +263,10 @@ require('lazy').setup({
     lazy = false,
     priority = 1000,
   },
+  {
+    'numToStr/Comment.nvim',
+    lazy = false,
+  },
   -- {
   --   'saghen/blink.cmp',
   --   opts = {
