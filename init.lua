@@ -252,7 +252,6 @@ require('lazy').setup({
     'xiyaowong/transparent.nvim',
     lazy = false,
   },
-
   {
     'rebelot/kanagawa.nvim',
     lazy = false,
@@ -273,6 +272,17 @@ require('lazy').setup({
   },
   {
     'numToStr/Comment.nvim',
+    lazy = false,
+  },
+  {
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
     lazy = false,
   },
   -- {
@@ -812,7 +822,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+        python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
