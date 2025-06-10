@@ -176,6 +176,9 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+-- neotree and oil
+vim.keymap.set('n', '\\', '<cmd>Neotree<CR>')
+vim.keymap.set('n', '-', '<cmd>Oil<CR>')
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -278,12 +281,54 @@ require('lazy').setup({
     'stevearc/oil.nvim',
     ---@module 'oil'
     ---@type oil.SetupOpts
-    opts = {},
     -- Optional dependencies
     dependencies = { { 'echasnovski/mini.icons', opts = {} } },
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
     -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
     lazy = false,
+    config = function()
+      require('oil').setup {
+        default_file_explorer = true,
+        keymaps = {
+          ['r<CR>'] = {
+            desc = 'Recursively Open directores (e.g. go to ha.txt directly in dir/dir_sub/mom.txt)',
+            callback = function()
+              local oil = require 'oil'
+              local dir = oil.get_current_dir()
+              local cursor = oil.get_cursor_entry()
+              local function o()
+                oil.open(dir .. cursor.name)
+                vim.wait(50)
+                dir = oil.get_current_dir()
+                cursor = oil.get_cursor_entry()
+                local bn = vim.fn.bufnr()
+                local lines = vim.api.nvim_buf_line_count(bn)
+                if lines == 1 and cursor ~= nil and cursor.type == 'directory' then
+                  o()
+                end
+              end
+              o()
+            end,
+          },
+        },
+      }
+    end,
+  },
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+      -- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
+    },
+    lazy = false, -- neo-tree will lazily load itself
+    ---@module "neo-tree"
+    ---@type neotree.Config?
+    opts = {
+      -- fill any relevant options here
+    },
   },
   -- {
   --   'saghen/blink.cmp',
