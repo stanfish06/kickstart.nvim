@@ -185,7 +185,7 @@ vim.keymap.set('n', '-', '<cmd>Oil<CR>')
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><C-n>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -232,6 +232,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     error('Error cloning lazy.nvim:\n' .. out)
   end
 end
+
+---------- buffer line ----------
+vim.opt.termguicolors = true
 
 ---@type vim.Option
 local rtp = vim.opt.rtp
@@ -310,6 +313,22 @@ require('lazy').setup({
               o()
             end,
           },
+        },
+      }
+    end,
+  },
+
+  {
+    'akinsho/bufferline.nvim',
+    version = '*',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    config = function()
+      local bufferline = require 'bufferline'
+      bufferline.setup {
+        options = {
+          mode = 'buffers',
+          style_preset = bufferline.style_preset.default,
+          themable = true,
         },
       }
     end,
