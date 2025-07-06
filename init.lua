@@ -267,14 +267,34 @@ require('lazy').setup({
       require('kanagawa').setup {
         -- use default for now
       }
-
-      vim.cmd.colorscheme 'kanagawa-wave'
+      -- vim.cmd.colorscheme 'kanagawa-wave'
     end,
   },
   {
     'rose-pine/neovim',
     lazy = false,
     priority = 1000,
+    config = function()
+      -- vim.cmd.colorscheme 'rose-pine'
+    end,
+  },
+  {
+    'ellisonleao/gruvbox.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('gruvbox').setup {
+        palette_overrides = {
+          bright_orange = '#FFECCC',
+          bright_red = '#D65D0E',
+          bright_blue = '#31748F',
+          dark0_hard = '#000000',
+        },
+        dim_inactive = true,
+        contrast = 'hard',
+      }
+      vim.cmd.colorscheme 'gruvbox'
+    end,
   },
   {
     'numToStr/Comment.nvim',
