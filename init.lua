@@ -254,10 +254,10 @@ rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  {
-    'xiyaowong/transparent.nvim',
-    lazy = false,
-  },
+  -- {
+  --   'xiyaowong/transparent.nvim',
+  --   lazy = false,
+  -- },
   {
     'rebelot/kanagawa.nvim',
     lazy = false,
@@ -279,6 +279,7 @@ require('lazy').setup({
     end,
   },
   {
+    -- do not use transparent.nvim
     'ellisonleao/gruvbox.nvim',
     lazy = false,
     priority = 1000,
@@ -290,8 +291,8 @@ require('lazy').setup({
           bright_blue = '#31748F',
           dark0_hard = '#000000',
         },
-        dim_inactive = true,
         contrast = 'hard',
+        transparent_mode = true,
       }
       vim.cmd.colorscheme 'gruvbox'
     end,
