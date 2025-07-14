@@ -156,7 +156,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.o.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.o.cursorline = true
+vim.o.cursorline = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
@@ -279,17 +279,19 @@ require('lazy').setup({
     end,
   },
   {
-    -- do not use transparent.nvim
+    -- do not use transparent.nvim. Set transparent_mode to true instead.
     'ellisonleao/gruvbox.nvim',
     lazy = false,
     priority = 1000,
     config = function()
+      -- use to get a list of colors lua for k, v in pairs(require("gruvbox").palette) do print(k, v) end
       require('gruvbox').setup {
         palette_overrides = {
           bright_orange = '#FFECCC',
           bright_red = '#D65D0E',
           bright_blue = '#31748F',
           dark0_hard = '#000000',
+          bright_purple = '#EB6F92',
         },
         contrast = 'hard',
         transparent_mode = true,
@@ -348,7 +350,9 @@ require('lazy').setup({
       bufferline.setup {
         options = {
           mode = 'buffers',
-          style_preset = bufferline.style_preset.default,
+          style_preset = {
+            bufferline.style_preset.default,
+          },
           themable = true,
         },
       }
