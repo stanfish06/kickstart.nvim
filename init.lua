@@ -240,6 +240,10 @@ vim.opt.termguicolors = true
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
+---------- indent without reselect ----------
+vim.keymap.set('v', '>', '>gv', { noremap = true, silent = true })
+vim.keymap.set('v', '<', '<gv', { noremap = true, silent = true })
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
