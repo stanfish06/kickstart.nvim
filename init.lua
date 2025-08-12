@@ -244,6 +244,10 @@ rtp:prepend(lazypath)
 vim.keymap.set('v', '>', '>gv', { noremap = true, silent = true })
 vim.keymap.set('v', '<', '<gv', { noremap = true, silent = true })
 
+---------- move between buffers ----------
+vim.keymap.set('n', 'H', ':bprevious<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', 'L', ':bnext<CR>', { noremap = true, silent = true })
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -344,7 +348,6 @@ require('lazy').setup({
       }
     end,
   },
-
   {
     'akinsho/bufferline.nvim',
     version = '*',
@@ -1558,6 +1561,7 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+      require('mini.pairs').setup()
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
