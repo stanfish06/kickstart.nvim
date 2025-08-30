@@ -1383,7 +1383,7 @@ require('lazy').setup({
     cmd = { 'ConformInfo' },
     keys = {
       {
-        '<leader>f',
+        '<leader>cf',
         function()
           require('conform').format { async = true, lsp_format = 'fallback' }
         end,
@@ -1410,6 +1410,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
+        ruby = { 'ruby-lsp' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
