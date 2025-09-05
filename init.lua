@@ -320,7 +320,7 @@ require('lazy').setup({
     end,
   },
   {
-    'kdheepak/monochrome.nvim',
+    'stanfish06/monochrome.nvim',
     lazy = false,
     priority = 1000,
     config = function()
