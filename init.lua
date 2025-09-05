@@ -248,6 +248,18 @@ vim.keymap.set('v', '<', '<gv', { noremap = true, silent = true })
 vim.keymap.set('n', 'H', ':bprevious<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', 'L', ':bnext<CR>', { noremap = true, silent = true })
 
+---------- cursor style ----------
+local function set_cursor_color()
+  vim.api.nvim_set_hl(0, 'myCursor', { fg = '#FFA500', bg = '#FF8C00' })
+  vim.api.nvim_set_hl(0, 'myICursor', { fg = '#FFA500', bg = '#FFA500' })
+end
+vim.api.nvim_create_autocmd('ColorScheme', {
+  pattern = '*',
+  callback = set_cursor_color,
+})
+set_cursor_color()
+vim.opt.guicursor = 'n-v-c:block-myCursor,i-ci-ve:ver25-myICursor'
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -304,7 +316,15 @@ require('lazy').setup({
         contrast = 'hard',
         transparent_mode = true,
       }
-      vim.cmd.colorscheme 'gruvbox'
+      -- vim.cmd.colorscheme 'gruvbox'
+    end,
+  },
+  {
+    'kdheepak/monochrome.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'monochrome'
     end,
   },
   {
@@ -1402,7 +1422,7 @@ require('lazy').setup({
           return nil
         else
           return {
-            timeout_ms = 500,
+            timeout_ms = 5000,
             lsp_format = 'fallback',
           }
         end
@@ -1411,6 +1431,7 @@ require('lazy').setup({
         lua = { 'stylua' },
         python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
         ruby = { 'ruby-lsp' },
+        r = { 'styler' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
