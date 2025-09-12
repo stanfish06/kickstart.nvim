@@ -1179,6 +1179,10 @@ require('lazy').setup({
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
       --    function will be executed to configure the current buffer
+
+      -- Mason v2 does not work for julials for now. Need to install manually
+      vim.lsp.enable 'julials'
+
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
@@ -1329,7 +1333,7 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       --  For Mason v2, make sure to have nodejs >= v23
       local servers = {
-        -- clangd = {},
+        clangd = {},
         -- gopls = {},
         pyright = {},
         ruff = {},
@@ -1432,6 +1436,7 @@ require('lazy').setup({
         python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
         ruby = { 'ruby-lsp' },
         r = { 'styler' },
+        julia = { 'julials' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
