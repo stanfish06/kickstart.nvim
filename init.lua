@@ -1335,7 +1335,8 @@ require('lazy').setup({
       local servers = {
         clangd = {},
         -- gopls = {},
-        pyright = {},
+        -- pyright = {},
+        pyrefly = {}, -- works a lot faster than pyright
         ruff = {},
         rust_analyzer = {},
         bashls = {},
