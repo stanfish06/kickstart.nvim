@@ -1336,6 +1336,7 @@ require('lazy').setup({
         clangd = {},
         -- gopls = {},
         -- pyright = {},
+        ts_ls = {},
         pyrefly = {}, -- works a lot faster than pyright
         ruff = {},
         rust_analyzer = {},
